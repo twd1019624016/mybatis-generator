@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mryx.ocean.wms.dao.SmsAreaCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.mryx.ocean.wms.domain.SmsAreaCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="parent_category" jdbcType="BIGINT" property="parentCategory" />
+    <result column="area_category_status" jdbcType="TINYINT" property="areaCategoryStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="sharding_id" jdbcType="BIGINT" property="shardingId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, area_id, parent_category, area_category_status, create_time, create_user_id, 
+    update_time, update_user_id, sharding_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_area_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_area_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mryx.ocean.wms.domain.SmsAreaCategory">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_area_category (area_id, parent_category, area_category_status, 
+      create_time, create_user_id, update_time, 
+      update_user_id, sharding_id)
+    values (#{areaId,jdbcType=BIGINT}, #{parentCategory,jdbcType=BIGINT}, #{areaCategoryStatus,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=BIGINT}, #{shardingId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mryx.ocean.wms.domain.SmsAreaCategory">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_area_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="parentCategory != null">
+        parent_category,
+      </if>
+      <if test="areaCategoryStatus != null">
+        area_category_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="shardingId != null">
+        sharding_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategory != null">
+        #{parentCategory,jdbcType=BIGINT},
+      </if>
+      <if test="areaCategoryStatus != null">
+        #{areaCategoryStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="shardingId != null">
+        #{shardingId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mryx.ocean.wms.domain.SmsAreaCategory">
+    update sms_area_category
+    <set>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCategory != null">
+        parent_category = #{parentCategory,jdbcType=BIGINT},
+      </if>
+      <if test="areaCategoryStatus != null">
+        area_category_status = #{areaCategoryStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="shardingId != null">
+        sharding_id = #{shardingId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mryx.ocean.wms.domain.SmsAreaCategory">
+    update sms_area_category
+    set area_id = #{areaId,jdbcType=BIGINT},
+      parent_category = #{parentCategory,jdbcType=BIGINT},
+      area_category_status = #{areaCategoryStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      sharding_id = #{shardingId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

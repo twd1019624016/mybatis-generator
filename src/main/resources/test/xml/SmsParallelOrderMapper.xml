@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mryx.ocean.wms.dao.SmsParallelOrderMapper">
+  <resultMap id="BaseResultMap" type="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parallel_out_id" jdbcType="BIGINT" property="parallelOutId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="parallel_out_status" jdbcType="INTEGER" property="parallelOutStatus" />
+    <result column="sharding_id" jdbcType="BIGINT" property="shardingId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parallel_out_id, order_id, parallel_out_status, sharding_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_parallel_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_parallel_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_parallel_order (parallel_out_id, order_id, parallel_out_status, 
+      sharding_id, create_time, update_time
+      )
+    values (#{parallelOutId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{parallelOutStatus,jdbcType=INTEGER}, 
+      #{shardingId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_parallel_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parallelOutId != null">
+        parallel_out_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="parallelOutStatus != null">
+        parallel_out_status,
+      </if>
+      <if test="shardingId != null">
+        sharding_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parallelOutId != null">
+        #{parallelOutId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="parallelOutStatus != null">
+        #{parallelOutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shardingId != null">
+        #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    update sms_parallel_order
+    <set>
+      <if test="parallelOutId != null">
+        parallel_out_id = #{parallelOutId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="parallelOutStatus != null">
+        parallel_out_status = #{parallelOutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shardingId != null">
+        sharding_id = #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    update sms_parallel_order
+    set parallel_out_id = #{parallelOutId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      parallel_out_status = #{parallelOutStatus,jdbcType=INTEGER},
+      sharding_id = #{shardingId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parallel_out_id" jdbcType="BIGINT" property="parallelOutId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="parallel_out_status" jdbcType="INTEGER" property="parallelOutStatus" />
+    <result column="sharding_id" jdbcType="BIGINT" property="shardingId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parallel_out_id, order_id, parallel_out_status, sharding_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_parallel_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_parallel_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_parallel_order (parallel_out_id, order_id, parallel_out_status, 
+      sharding_id, create_time, update_time
+      )
+    values (#{parallelOutId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{parallelOutStatus,jdbcType=INTEGER}, 
+      #{shardingId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_parallel_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parallelOutId != null">
+        parallel_out_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="parallelOutStatus != null">
+        parallel_out_status,
+      </if>
+      <if test="shardingId != null">
+        sharding_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parallelOutId != null">
+        #{parallelOutId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="parallelOutStatus != null">
+        #{parallelOutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shardingId != null">
+        #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    update sms_parallel_order
+    <set>
+      <if test="parallelOutId != null">
+        parallel_out_id = #{parallelOutId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="parallelOutStatus != null">
+        parallel_out_status = #{parallelOutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shardingId != null">
+        sharding_id = #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mryx.ocean.wms.domain.SmsParallelOrder">
+    update sms_parallel_order
+    set parallel_out_id = #{parallelOutId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      parallel_out_status = #{parallelOutStatus,jdbcType=INTEGER},
+      sharding_id = #{shardingId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

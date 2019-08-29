@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 需要添加的额外jar包（即将jar包添加classpath中 -->
+	<!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" 
+		/> -->
+
+	<!--id context 唯一标识，targetRuntime 指定生成类的运行环境 -->
+	<context id="mysql" targetRuntime="MyBatis3">
+
+		<!-- <plugin
+			type="org.mybatis.generator.plugins.EqualsHashCodePlugin">
+			<property name="useEqualsHashCodeFromRoot " value="true" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+			<property name="useEqualsHashCodeFromRoot " value="true" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="targetProject"
+				value="D:\workspace\generator\src\main\resources" />
+			<property name="targetPackage" value="test.xml" />
+			<property name="fileName" value="fileName.xml" />
+
+		</plugin>
+	
+		<plugin type="mybatis_plugins.BatchInsertPlugin"></plugin> -->
+        <!-- 使用自定义注释，去掉默认注册 -->
+		<plugin type="mybatis_plugins.CommentPlugin"></plugin>
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.2.4.138:3306/sms_0?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;zeroDateTimeBehavior=CONVERT_TO_NULL"
+			userId="qa" password="qa123">
+			<property name="useInformationSchema" value="true" />
+		</jdbcConnection>
+
+		<!-- 强制 demcial 和 numeric 的数据 将转成 bigdecimal 不会再可能的情况下变为（LONG,INTEGER.SHORT -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+
+		<!-- 生成java pojo类的 包名和路径 -->
+		<javaModelGenerator targetPackage="com.mryx.ocean.wms.domain"
+			targetProject="D:\workspace\generator\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成mapper.xml 包名和路径 -->
+		<sqlMapGenerator targetPackage="test.xml"
+			targetProject="D:\workspace\generator\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成dao 包名和路径 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.mryx.ocean.wms.dao"
+			targetProject="D:\workspace\generator\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 需要生成的表名，schema 库名，domainObjectName pojo的类名，不指定自动生成 -->
+		<!-- <table schema="wms-local" tableName="tprj_material_storage" domainObjectName="materialStorage" -->
+		<!-- <table schema="wms-local" tableName="tprj_suohuodan"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />  
+
+			<property name="useActualColumnNames" value="true"/> 为false 字段使用驼峰 
+				<generatedKey column="ID" sqlStatement="DB2" identity="true" /> <columnOverride 
+				column="DATE_FIELD" property="startDate" /> <ignoreColumn column="FRED" /> 
+				<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table> -->
+		<table schema="wms-local" tableName="sms_parallel_order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />  
+		</table>
+		
+	</context>
+</generatorConfiguration>
